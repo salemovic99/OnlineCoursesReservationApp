@@ -1,4 +1,4 @@
-# **Online Courses Reservation App Documentation**
+# ** Online Courses Reservation App Documentation **
 ## Introduction
 
 ### This documentation provides an overview and guide for the Online Courses Reservation App repository. The Online Courses Reservation App is a web application designed to facilitate the reservation of online courses. Users can browse available courses, select the ones they are interested in, and reserve spots for those courses.
