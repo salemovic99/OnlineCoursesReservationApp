@@ -1,0 +1,11 @@
+﻿@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "تأكيد  البريد الإلكتروني";
+}
+
+<section class="d-flex align-items-center justify-content-center flex-column">
+    <h1 class="mb-3">@ViewData["Title"]</h1>
+    <partial name="_StatusMessage" model="Model.StatusMessage" />
+    <a asp-page="./Login" asp-area="Identity">تسجيل الدخول</a>
+</section>

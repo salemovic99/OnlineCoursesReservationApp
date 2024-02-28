@@ -1,0 +1,52 @@
+﻿@* @model CourseViewModels
+
+<form id="filterForm">
+    <label>Select Price Range:</label>
+    <select id="priceRange">
+        <option value="">All</option>
+        <option value="0-50">$0 - $50</option>
+        <option value="51-100">$51 - $100</option>
+        <option value="101-200">$101 - $200</option>
+        <option value="201-500">$201 - $500</option>
+        <!-- Add more options as needed -->
+    </select>
+
+    <label>Select Certificate:</label>
+    <select id="certificate">
+        <option value="">All</option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
+</form>
+
+<div id="courseList">
+    @Html.Partial("_CourseListPartial", Model.Courses)
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            // Function to trigger filtering
+            function filterCourses() {
+                var priceRange = $('#priceRange').val();
+                var certificate = $('#certificate').val();
+
+                $.ajax({
+                    url: '@Url.Action("FilterCourses", "Course")',
+                    type: 'POST',
+                    data: { priceRange: priceRange, certificate: certificate },
+                    success: function (result) {
+                        $('#courseList').html(result);
+                    }
+                });
+            }
+
+            // Event listener for dropdown change
+            $('#priceRange, #certificate').change(filterCourses);
+
+            // Initial filtering on page load
+            filterCourses();
+        });
+    </script>
+}
+ *@

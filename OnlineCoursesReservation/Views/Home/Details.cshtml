@@ -1,0 +1,119 @@
+﻿@{
+    ViewData["Title"] = "تفاصيل";
+}
+
+
+<div class="container">
+    <a asp-action="Index" class="text-decoration-none text-dark">الرئيسية</a>
+    <i class="ri-arrow-left-double-fill"></i>
+    <a asp-action="Courses" class="text-decoration-none text-dark">الكورسات</a>
+    <i class="ri-arrow-left-double-fill"></i>
+    <a asp-action="Detals" class="text-decoration-none text-dark">تفاصيل</a>
+
+</div>
+<section style="padding: 40px;" class="" >
+    <div class="container mt-5 p-5">
+        <div class="row d-flex justify-content-around  align-items-start ">
+            
+              
+            <div class="col-lg-6  ">
+                <h4 class="mb-3">دورة اللغة الانجليزية</h4>
+                <img src="~/imgs/details.jpg" alt="thumnail course" class="" style="width: 35rem;">
+                <h6 class="fw-bold mt-4">مدرب الدورة :  <span>احمد محمد</span></h6>
+                <h4>عن الدورة</h4>
+                <h4 class="mb-4">ما الذي سنتعلمه في هذه الدورة؟</h4>
+                <ol>
+                    <li>مقدمة في اللغة الإنجليزية وأهميتها في التواصل العالمي.</li>
+                    <li>تمارين الترجمة من العربية إلى الإنجليزية.</li>
+                    <li>قواعد النحو الأساسية وبنية الجمل.</li>
+                    <li>بناء المفردات والتمارين المتعلقة.</li>
+                    <li>مقدمة في العبارات والتعبيرات الإنجليزية الشائعة.</li>
+                    <li>تمارين فهم الاستماع.</li>
+                    <li>ممارسة المحادثة من خلال لعب الأدوار والمناقشات.</li>
+                    <li>كتابة جمل بسيطة وفقرات قصيرة باللغة الإنجليزية.</li>
+                </ol>
+
+            </div>
+
+            <!-- course dedtails -->
+            <div class="col-lg-4 shadow-sm card p-5  " >
+                <h4 class="text-center">تفاصيل الدورة</h4>
+                <hr>
+
+                <div class="row d-flex justify-content-around">
+                    <div class="col-5">
+                        <i class="ri-calendar-2-line"></i> 
+                        <p class="d-inline">بداية الدورة</p>
+                    </div>
+                    <p class="col-5">2024/4/4</p>
+                </div>
+                
+                <div class="row d-flex justify-content-around">
+                    <div class="col-5">
+                        <i class="ri-calendar-2-line"></i> 
+                        <p class="d-inline">نهاية الدورة</p>
+                    </div>
+                    <p class="col-5">2024/4/30</p>
+                </div>
+
+                <div class="row d-flex justify-content-around">
+                    <div class="col-5">
+                        <i class="ri-timer-line"></i>
+                        <p class="d-inline"> المدة الزمنية</p>
+                    </div>
+                    <p class="col-5">15ساعة</p>
+                </div>
+
+
+                <div class="row d-flex justify-content-around">
+                    <div class="col-5">
+                        <i class="ri-article-fill"></i>
+                        <p class="d-inline">  شهادة</p>
+                    </div>
+                    <p class="col-5">يوجد شهادة</p>
+                </div>
+                
+                <div class=" row d-flex justify-content-around">
+                    <div class="col-5">
+                        <i class="ri-numbers-line"></i>
+                        <p class="d-inline">  المستوى</p>
+                    </div>
+                    <p class="col-5" >مبتدئ</p>
+                </div>
+     
+                <div class="row d-flex justify-content-around">
+                    <div class="col-5 ">
+                        <i class="ri-hashtag"></i>
+                        <p class="d-inline">  عدد المقاعد</p>
+                    </div>
+                    <p class="col-5 ">30</p>
+                </div>
+                <div class="row d-flex justify-content-around">
+                    <div class="col-5">
+                        <i class="ri-price-tag-3-line"></i>
+                        <p class="d-inline">السعر</p>
+                    </div>
+                    <p class="col-5"> 15000 ريال</p>
+                </div>
+            
+                <div class="row d-flex justify-content-around">
+                    <div class="col-5">
+                        <i class="ri-hashtag"></i>
+                        <p class="d-inline">عدد المسجلين حاليا</p>
+                    </div>
+                    <p class="col-5"> 15</p>
+                </div>
+
+                <div class="row text-center mt-4 ">
+                    <a  asp-action="Payment" class="col-12 my-primary-btn ">تسجيل</a>
+                </div>
+
+            </div>
+            <!-- End course dedtails -->
+
+        </div>
+    </div>
+   </section>
+
+
+

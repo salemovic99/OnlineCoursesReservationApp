@@ -1,0 +1,89 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> userInManager
+
+
+
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">الملف الشخصي</a></li>
+    @* <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">بريد إلكتروني</a></li> *@
+    <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">تغيير كلمة المرور</a></li>
+    @if (hasExternalLogins)
+    {
+        @* <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li> *@
+    }
+    @* <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">المصادقة الثنائية</a></li> *@
+    @* <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">بيانات شخصية</a></li> *@
+</ul>
+
+@* 
+<!-- Bordered Tabs -->
+<ul class="nav nav-tabs ">
+
+    <li class="nav-item">
+        <button class="nav-link text-dark active" data-bs-toggle="tab" data-bs-target="#profile-overview">عام</button>
+    </li>
+
+    <li class="nav-item">
+        <button class="nav-link text-dark" data-bs-toggle="tab" data-bs-target="#profile-edit">تعديل الملف الشخصي</button>
+    </li>
+
+
+    <li class="nav-item">
+        <button class="nav-link text-dark" data-bs-toggle="tab" data-bs-target="#profile-change-password">تغيير كلمة المرور</button>
+    </li>
+
+</ul>
+
+ <div class="tab-content pt-2 p-4">
+
+    <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+        <partial name="_ProfilePartial" model="userInManager.GetUserAsync(User).Result"></partial>
+
+    </div>
+    <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+
+        <partial name="_EditProfilePartial" model="userInManager.GetUserAsync(User).Result"></partial>
+       
+    </div>
+ *@
+
+@*
+
+    <div class="tab-pane fade pt-3" id="profile-change-password">
+        <!-- Change Password Form -->
+        <form>
+
+            <div class="row mb-3">
+                <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">كلمة المرور الحالية</label>
+                <div class="col-md-8 col-lg-9">
+                    <input name="password" type="password" class="form-control" id="currentPassword">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">كلمة المرور الجديدة</label>
+                <div class="col-md-8 col-lg-9">
+                    <input name="newpassword" type="password" class="form-control" id="newPassword">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">تاكيد كلمة المرور الجديدة</label>
+                <div class="col-md-8 col-lg-9">
+                    <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="my-primary-btn">تغيير كلمة المرور</button>
+            </div>
+        </form><!-- End Change Password Form -->
+
+    </div>
+
+</div><!-- End Bordered Tabs -->
+ *@

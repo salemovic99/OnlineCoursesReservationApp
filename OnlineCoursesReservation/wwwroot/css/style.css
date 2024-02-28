@@ -1,0 +1,438 @@
+
+:root{
+  --primary-color:#ffc727;
+  /* --primary-color:#FFC727; */
+  --secondery-color:#37474f;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  font-family: 'Cairo', sans-serif;
+}
+
+section{
+  min-height: 100vh;
+}
+
+/* costome classes */
+
+#hero-btn {
+  text-decoration: none;
+  color: var(--secondery-color);
+  font-size: 1.1rem;
+  border: 2px solid var(--primary-color);
+  padding: 10px 40px;
+  border-radius: 8px;
+  transition: 500ms;
+}
+
+#hero-btn:hover{
+  background-color: var(--primary-color);
+}
+
+
+
+.my-primary-btn{
+  border: none;
+  outline: none;
+  padding: 7px 20px;
+  text-decoration: none;
+  border-radius: 10px;
+  background-color: #000;
+  color:#fff ;
+  transition: 500ms;
+}
+.my-primary-btn:hover{
+    color:white;
+background-color:#00000090
+
+}
+.my-text-primary{
+  color: var(--primary-color);
+}
+.my-text-secondery{
+  color: var(--secondery-color);
+}
+.bg-sec{
+  background-color: var(--secondery-color);
+}
+.bg-green{
+  background-color: var(--primary-color);
+}
+.bg-slate{
+  background-color: #288230  ;
+}
+/* costome classes */
+
+
+/* header */
+#navbarNav ul li a{
+  color: #3d3d3d;
+}
+
+#navbarNav ul li a:hover{
+  color: #3d3d3d7b;
+}
+
+#btn-header{
+  display: none;
+}
+
+
+
+
+
+@media (min-width:1050px ) {
+  #btn-header{
+    display: block;
+  }
+    
+}
+
+/* header */
+
+
+/* hero */
+
+
+
+#hero-content::after{
+ content: "";
+ animation-name: writeAndDeleteWords;
+animation-duration: 10s;
+animation-iteration-count: infinite;
+animation-direction: alternate-reverse;
+
+}
+
+@keyframes writeAndDeleteWords {
+  0%{
+    content: '';
+  }
+  5%{
+    content: 'د';
+  }
+  10%{
+    content: 'دو';
+  }
+  20%{
+    content: 'دور';
+  }
+  25%{
+    content: 'دورا';
+  }
+  30%{
+    content: 'دورات';
+  }
+  40%{
+    content: 'دوراتن';
+  }
+  45%{
+    content: 'دوراتنا';
+  }
+
+  60%{
+    content: 'دوراتن';
+  }
+  65%{
+    content: 'دورات';
+  }
+  70%{
+    content: 'دورا';
+  }
+  
+  75%{
+    content: 'دور';
+  }
+  80%{
+    content: 'دو';
+  }
+  90%{
+    content: 'د';
+  }
+  95%{
+    content: '';
+  }
+  
+}
+
+
+.fancy {
+  background-color: transparent;
+  border: 2px solid var(--secondery-color);
+  border-radius: 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  /* float: right; */
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 1.25em 2em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  transition: all 0.3s ease-in-out;
+  user-select: none;
+  font-size: 13px;
+ }
+ 
+
+ .fancy .text {
+  font-size: 1.125em;
+  line-height: 1.33333em;
+  padding-left: 2em;
+  display: block;
+  text-align: left;
+  transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: black;
+ }
+ 
+ .fancy .top-key {
+  height: 2px;
+  width: 1.5625rem;
+  top: -2px;
+  left: 0.625rem;
+  position: absolute;
+  background: #e8e8e8;
+  transition: width 0.5s ease-out, left 0.3s ease-out;
+ }
+ 
+ .fancy .bottom-key-1 {
+  height: 2px;
+  width: 1.5625rem;
+  right: 1.875rem;
+  bottom: -2px;
+  position: absolute;
+  background: #e8e8e8;
+  transition: width 0.5s ease-out, right 0.3s ease-out;
+ }
+ 
+ .fancy .bottom-key-2 {
+  height: 2px;
+  width: 0.625rem;
+  right: 0.625rem;
+  bottom: -2px;
+  position: absolute;
+  background: #e8e8e8;
+  transition: width 0.5s ease-out, right 0.3s ease-out;
+ }
+ 
+ .fancy:hover {
+  color: white;
+  background: var(--secondery-color);
+ }
+ 
+ .fancy:hover::before {
+  width: 0.9375rem;
+  background: white;
+ }
+ 
+ .fancy:hover .text {
+  color: white;
+  padding-left: 1.5em;
+ }
+ 
+ .fancy:hover .top-key {
+  left: -2px;
+  width: 0px;
+ }
+ 
+ .fancy:hover .bottom-key-1,
+  .fancy:hover .bottom-key-2 {
+  right: 0;
+  width: 0;
+ }
+
+
+/* contact */
+
+/* contact */
+
+
+/* courses section */
+
+
+.course-card{
+
+  max-height: 400px;
+  min-height: 200px;
+}
+
+.img-card:hover{
+transition: 500ms;
+transform: scale(1.1);
+opacity: 0.7;
+}
+
+.card-course:hover a{
+  display: inline;
+  transition: 1s;
+  transform: translateX(120px);
+  
+}
+
+.cta {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.cta span {
+  padding-bottom: 7px;
+  letter-spacing: 4px;
+  font-size: 14px;
+  padding-right: 15px;
+  text-transform: uppercase;
+}
+
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+.hover-underline-animation {
+  position: relative;
+  color: black;
+  padding-bottom: 20px;
+}
+
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000000;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+
+
+.certificate-card {
+  border-radius: .25rem;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 400;
+  padding-left: 25px;
+  padding-right: 25px;
+  color: #fff;
+  -webkit-clip-path: polygon(0 0,0 0,100% 0,100% 0,100% calc(100% - 15px),calc(100% - 15px) 100%,15px 100%,0 100%);
+  clip-path: polygon(0 0,0 0,100% 0,100% 0,100% calc(100% - 15px),calc(100% - 15px) 100%,15px 100%,0 100%);
+  height: 40px;
+  font-size: 0.7rem;
+  line-height: 14px;
+  letter-spacing: 1.2px;
+  transition: .2s .1s;
+  background-image: linear-gradient(90deg,#379b0f,#4aa708);
+  border: 0 solid;
+  overflow: hidden;
+}
+
+.certificate-card:hover {
+  cursor: pointer;
+  transition: all .3s ease-in;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+/* courses section */
+
+
+
+/* courses page */
+
+
+.filter-btn{
+  background-color: #fff; 
+  color: black;
+  padding: 7px 15px;
+  border: 1px solid #00000076;
+  border-radius: 20px;
+}
+
+.filter-btn:hover{
+  color: #00000097;
+}
+
+.searchbox input{
+  outline: none;
+  padding: 15px 20px;
+  border-radius: 50px;
+  border: 1px solid #00000063;
+
+}
+.searchbox input:focus{
+  border: 2px solid #00000067;
+}
+
+.catigories a{
+text-decoration: none;
+color: black;
+padding: 5px 20px;
+margin: 5px;
+border-radius: 20px;
+transition: 500ms;
+
+}
+
+.active-catigory{
+  background-color: #e5e9e5;
+}
+.catigories a:hover{
+  color: black;
+  background-color: #e5e9e5;
+}
+
+
+
+
+
+/* courses page */
+
+
+/* signin page */
+
+#sign-in-img {
+    background-image: url("~/imgs/Astronaut-suit-cuate.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* signin page */
+
+
+/* signUp page */
+
+#img-sign-Up-page {
+    background-image: url("~/imgs/Virtual-reality-cuate.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* signUp page */
+

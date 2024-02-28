@@ -1,0 +1,37 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز خدمة المجتمع | @ViewData["Title"]</title>
+    <link rel="icon" type="image/x-icon" href="~/imgs/WhatsApp Image 2024-02-04 at 11.31.47 AM(1).jpeg">
+
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css">
+
+
+    <!-- Remix Icons -->
+    <link rel="stylesheet" href="~/lib/remixicon/remixicon.css">
+
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+
+</head>
+<body dir="rtl">
+
+
+    
+    <main role="main" class="">
+        @RenderBody()
+    </main>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/main.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

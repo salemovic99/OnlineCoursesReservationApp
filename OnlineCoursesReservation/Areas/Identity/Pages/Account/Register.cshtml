@@ -1,0 +1,126 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "تسجيل";
+    Layout = "/Views/Shared/_signIn-signUpLayout.cshtml";
+}
+
+
+<section>
+    <div class="">
+
+        <div class="row ">
+
+            <div class="col-lg-6 " style="min-height: 100vh;">
+
+
+                <div class="row d-flex flex-column align-items-center justify-content-around">
+
+                    <div class="p-4 d-flex justify-content-around align-items-center ">
+                        <a class="" href="#"><img src="~/imgs/WhatsApp Image 2024-02-04 at 11.31.47 AM(1).jpeg" alt="logo" style="width: 80px;" class=" rounded-pill"></a>
+                    </div>
+
+                    <h5 class="text-center mb-4">  تسجيل حساب جديد  </h5>
+
+                    @{
+                        if ((Model.ExternalLogins?.Count ?? 0) != 0)
+                        {
+                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="col-xl-6">
+                                <div>
+                                    <p>
+                                        @foreach (var provider in Model.ExternalLogins!)
+                                        {
+                                            <div class="w-100 text-center mb-5 mt-3">
+                                        <button type="submit" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account" style="background-color:white; color: black;border: 1px solid #0000004d; padding: 10px 85px;border-radius: 10px;outline:none">تسجيل  باستخدام @provider.Name </button>
+                                            </div>
+                                        }
+                                    </p>
+                                </div>
+                            </form>
+                        }
+
+                    }
+
+
+
+
+                   
+                    
+
+                    <div class="row d-flex justify-content-center align-items-center ">
+                        <span class="col-2" style="height: 2px; background-color: #000000a4;"></span>
+                        <span class="col-1 text-center">أو</span>
+                        <span class="col-2" style="height: 2px; ;background-color: #000;"></span>
+                    </div>
+
+                    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" novalidate class="col-lg-6 mt-5 p-lg-0 p-md-5 p-sm-5">
+
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label asp-for="Input.FirstName"class="form-label"> </label>
+                                    <input type="text" asp-for="Input.FirstName" class="form-control"  aria-required="true"  />
+                                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label asp-for="Input.LastName" class="form-label"> </label>
+                                    <input type="text" asp-for="Input.LastName" class="form-control"  aria-required="true"  />
+                                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                                
+                        </div>
+
+                        <div class=" mb-3">
+                            <label asp-for="Input.Email" class="form-label">البريد الاكتروني</label>
+                            <input type="email" asp-for="Input.Email" class="form-control"  aria-required="true" placeholder="name@example.com" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class=" mb-3">
+                            <label asp-for="Input.Password" class="form-label">كلمة المرور</label>
+                            <input type="password" asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="mb-4">
+                            <label asp-for="Input.ConfirmPassword" class="form-label"></label>
+                            <input type="password" asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+
+
+                        <button id="registerSubmit" type="submit" class="my-primary-btn w-100">تسجيل </button>
+
+
+                        <div class="text-center mt-5">
+                            <p class=" fw-light"> عضوا؟<a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="fw-light ms-2 text-decoration-none my-text-primary">سجل دخولك</a> </p>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+                
+            <div id="img-sign-Up-page" class="col-xl-6">
+                <img src="~/imgs/virtual-reality-cuate.svg" />
+                    
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+  
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+

@@ -1,0 +1,72 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav" style="list-style: none;">
+@if (SignInManager.IsSignedIn(User))
+{
+  
+       
+    <li class=" dropdown pe-3">
+
+            <a asp-area="Identity" asp-page="/Account/Manage/Index" title="ادارة" class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown">
+
+                @if(UserManager.GetUserAsync(User).Result.ProfilePicture == null)
+                {   
+                    <img src="~/imgs/userprofile.png" alt="Profile_img" class="rounded-circle" style="width: 40px;height: 40px;">
+                }
+                else
+                {
+                    <img src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.ProfilePicture))" alt="Profile_img" class="rounded-circle" style="width: 40px; height: 40px;">                  
+                }
+
+
+
+                <span class="d-none d-md-block dropdown-toggle m-xl-3 text-dark">Hello @User.Identity?.Name!</span>
+            </a><!-- End Profile Iamge Icon -->
+
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile shadow-lg rounded-5  ">
+
+
+            <li>
+                <a class="dropdown-item d-flex align-items-center" asp-area="Identity" asp-page="/Account/Manage/Index">
+                        <i class="ri ri-person-line"></i>
+                    <span>الملف الشخصي</span>
+                </a>
+            </li>
+
+
+                @if (User.IsInRole("Admin"))
+                {
+                <hr class="dropdown-divider">
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" asp-area="Admin" asp-action="Index" asp-controller="Home">
+                            <i class="ri ri-person-line"></i>
+                            <span> لوحة التحكم</span>
+                        </a>
+                    </li>
+                }
+            
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+
+            <li class=" dropdown-item d-flex align-items-center">
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="nav-link btn btn-link text-dark">تسجيل الخروج</button>
+                </form>
+            </li>
+
+        </ul><!-- End Profile Dropdown Items -->
+    </li><!-- End Profile Nav -->
+        
+}
+else
+{
+   
+    <li class="nav-item">
+        @* <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a> *@
+            <a asp-area="Identity" asp-page="/Account/Register" class="my-primary-btn">انظمام</a>
+    </li>
+}
+</ul>

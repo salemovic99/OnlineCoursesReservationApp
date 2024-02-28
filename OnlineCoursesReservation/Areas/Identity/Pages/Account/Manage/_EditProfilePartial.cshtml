@@ -1,0 +1,49 @@
+﻿ <!-- Profile Edit Form -->
+<form id="file">
+    <div class="row mb-3">
+        <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">صورة الملف الشخصي</label>
+        <div class="col-md-8 col-lg-9">
+            <img id="img-profile" src="img/userprofile.png" alt="Profile" class=" rounded-circle" style="width:150px ;height: 150px;">
+
+            <div class="">
+                <!-- <button id="btn-chagne-profile" class="btn btn-outline-dark btn-sm rounded-pill" title="تعديل صورة الملف الشحصي"><i class="ri ri-edit-line"></i></button> -->
+                <!-- <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="ri ri-delete-bin-2-fill"></i></a> -->
+                <input type="file" name="profile" id="profile" class="form-control">
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="firstName" class="col-md-4 col-lg-3 col-form-label">الاسم الاول</label>
+        <div class="col-md-8 col-lg-9">
+            <input name="firstName" type="text" class="form-control" id="firstName" value="محمد">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="lastname" class="col-md-4 col-lg-3 col-form-label">الاسم الثاني</label>
+        <div class="col-md-8 col-lg-9">
+            <input name="lastname" type="text" class="form-control" id="lastname" value="أحمد">
+        </div>
+    </div>
+
+
+
+    <div class="row mb-3">
+        <label for="Phone" class="col-md-4 col-lg-3 col-form-label">هاتف</label>
+        <div class="col-md-8 col-lg-9">
+            <input name="phone" type="text" class="form-control" id="Phone" value="+967 777 777 777">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="Email" class="col-md-4 col-lg-3 col-form-label">البريد إلكتروني</label>
+        <div class="col-md-8 col-lg-9">
+            <input name="email" type="email" class="form-control" id="Email" value="M@example.com">
+        </div>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="my-primary-btn">حفظ التغييرات</button>
+    </div>
+</form><!-- End Profile Edit Form -->

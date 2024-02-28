@@ -1,0 +1,127 @@
+﻿@{
+    var action = ViewContext.RouteData.Values["action"].ToString();
+    var controller = ViewContext.RouteData.Values["controller"].ToString();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> لوحه التحكم  | @ViewData["Title"]</title>
+    <link rel="icon" type="image/x-icon" href="~/imgs/WhatsApp Image 2024-02-04 at 11.31.47 AM(1).jpeg">
+
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="~/lib/aos/aos.css">
+    <link rel="stylesheet" href="~/lib/apexcharts/apexcharts.css">
+    <link rel="stylesheet" href="~/OnlineCoursesReservation.styles.css" asp-append-version="true" />
+
+    <!-- Remix Icons -->
+    <link rel="stylesheet" href="~/lib/remixicon/remixicon.css">
+
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+
+    <style>
+            :root{
+        --text-slate:#0f172a;
+        --text-indego:#4338ca;
+        }
+
+        *{
+            font-family: 'cairo','sans-serf';
+        }
+
+        .text-slate{
+            color: var(--text-slate);
+        }
+
+        section{
+            min-height: 100vdh;
+        }
+        .active-link{
+            font-weight: bold;
+        }
+        .navbar-nav a{
+            font-size: 1.1rem;
+            color: #000;
+        }
+        .navbar nav a:hover{
+            color: #00000089;
+        }
+
+        /* card */
+
+        .info-card:hover {
+            transition: 500ms;
+            box-shadow: 10px 10px 20px #0000001a;
+        }
+        /* card */
+    </style>
+
+</head>
+<body dir="rtl">
+
+
+    <!-- بداية قسم شريط التنقل -->
+    <div class="container">
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+
+
+                <div class="mx-4">
+                    <a class="navbar-brand text-dark fw-bold fs-1 " asp-action="Index" asp-controller="Home" asp-area="Admin">لوحة التحكم</a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="تبديل التنقل">
+                    <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+                </button>
+
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+
+                    <div class="navbar-nav ms-5">
+                        <a asp-action="Index" asp-controller="Home"         class="nav-link @(controller == "Home" && action == "Index" ? "active-link" : "") "> عام</a>
+                        <a asp-action="Index" asp-controller="Users"        class="nav-link @(controller == "Users" && action=="Index" ? "active-link" : "" )">المستخدمين</a>
+                        <a asp-action="Index" asp-controller="Courses"      class="nav-link @(controller == "Courses" && action=="Index" ? "active-link" : "" )">الدورات</a>
+                        <a asp-action="Index" asp-controller="Reservations" class="nav-link @(controller == "Reservations" && action=="Index" ? "active-link" : "" )">الحجوزات</a>
+                        <a asp-action="Index" asp-controller="Teachers"     class="nav-link @(controller == "Teachers" && action=="Index" ? "active-link" : "" )">المدرسين</a>
+                        <a asp-action="Index" asp-controller="Categories"   class="nav-link @(controller == "Categories" && action=="Index" ? "active-link" : "" )">الفئات</a>
+                        <a asp-action="Index" asp-controller="Levels"       class="nav-link @(controller == "Levels" && action=="Index" ? "active-link" : "" )">المستويات</a>
+                        <a asp-action="Index" asp-controller="Roles"        class="nav-link @(controller == "Roles" && action=="Index" ? "active-link" : "" )">Roles</a>
+                    </div> 
+                    <div>
+                        <a href="signin.html" class=""><img src="~/imgs/userprofile.png" alt="user" width="50px" height="50px"></a>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </nav>
+    </div>
+    <!-- نهاية قسم شريط التنقل -->
+
+    <main role="main" class="container p-5">
+       
+
+        @RenderBody()
+    </main>
+
+
+   
+
+
+    <script src="~/lib/aos/aos.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/apexcharts/apexcharts.js"></script>
+    <script src="~"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/site.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
