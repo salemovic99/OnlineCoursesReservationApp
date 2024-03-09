@@ -1,10 +1,14 @@
-﻿ <!-- Start header -->
+﻿@{
+    var areaName = ViewContext.RouteData.Values["area"];
+   
+}
+<!-- Start header -->
 <header>
     <nav class="navbar navbar-expand-lg ">
 
         <div class="container ">
 
-            <a class="navbar-brand" asp-action="Index" asp-controller="Home" ><img src="~/imgs/WhatsApp Image 2024-02-04 at 11.31.47 AM(1).jpeg" alt="logo" width="55px" height="55px" class=" rounded-pill "></a>
+            <a class="navbar-brand" asp-action="Index" asp-controller="Home" asp-area=""    ><img src="~/imgs/WhatsApp Image 2024-02-04 at 11.31.47 AM(1).jpeg" alt="logo" width="55px" height="55px" class=" rounded-pill "></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"><i class="ri-menu-line"></i></span>
             </button>
@@ -13,13 +17,13 @@
             <div class="collapse navbar-collapse  me-xl-2  d-xl-flex align-items-xl-center justify-content-xl-center" id="navbarNav">
                 <ul class="navbar-nav mx-5">
                     <li class="nav-item mx-2">
-                        <a class="nav-link" asp-action="Index" asp-controller="Home">الرئيسية</a>
+                        <a class="nav-link" asp-action="Index" asp-controller="Home" asp-area="">الرئيسية</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" asp-action="courses" asp-controller="Home">الكورسات</a>
+                        <a class="nav-link mx-2" asp-action="courses" asp-controller="Home" asp-area="">الكورسات</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" asp-action="contact" asp-controller="Home">تواصل معنا</a>
+                        <a class="nav-link mx-2" asp-action="contact" asp-controller="Home" asp-area="">تواصل معنا</a>
                     </li>
                 </ul>
             </div>

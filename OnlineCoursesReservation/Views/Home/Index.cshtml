@@ -1,4 +1,6 @@
-﻿@{
+﻿@model FaqTopCoursesViewModel
+
+@{
     ViewData["Title"] = "الرئيسية";
 }
 
@@ -292,6 +294,23 @@
 
                 <div class="accordion accordion-flush" id="faq-group-1">
 
+
+                    @foreach (var item in Model.FAQs)
+                    {
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" data-bs-target="#faqsOne-@item.Id" type="button" data-bs-toggle="collapse">
+                                   @item.Question
+                                </button>
+                            </h2>
+                            <div id="faqsOne-@item.Id" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
+                                <div class="accordion-body">
+                                   @item.Answer
+                                </div>
+                            </div>
+                        </div>
+                    }
+@* 
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" data-bs-target="#faqsOne-1" type="button" data-bs-toggle="collapse">
@@ -342,7 +361,7 @@
                                 Numquam ut reiciendis aliquid. Quia veritatis quasi ipsam sed quo ut eligendi et non. Doloremque sed voluptatem at in voluptas aliquid dolorum.
                             </div>
                         </div>
-                    </div>
+                    </div> *@
 
                 </div>
             </div>

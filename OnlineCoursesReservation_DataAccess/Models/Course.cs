@@ -8,15 +8,36 @@ namespace OnlineCoursesReservation.Models
 
         [MaxLength(256)]
         public string Title { get; set; }
+
+
+
         public string Description { get; set; }
+
+
         public bool IsHasCertificate { get; set; }
+
+
         public int Duration { get; set; }
+
+
         public float Price { get; set; }
+
+
         public float? Discount { get; set; }
+
+
         public int EnrollmentCount { get; set; }
+
+
         public int NumberOfSeats { get; set; }
+
+
         public DateTime StartDate { get; set; }
+
+
         public DateTime EndDate { get; set; }
+
+
         public byte[] Thumnail { get; set; }
 
         public int CategoryId { get; set; }

@@ -28,12 +28,12 @@ namespace OnlineCoursesReservation_DataAccess.Services.Repositories
             }
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(T entity)
         {
             try
             {
 
-                var entity = await GetByIdAsync(id);
+
                 if (entity == null)
                 {
                     return false;

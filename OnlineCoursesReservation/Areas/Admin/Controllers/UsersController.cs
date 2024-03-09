@@ -1,14 +1,36 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using OnlineCoursesReservation.Areas.Admin.ViewModels;
+using OnlineCoursesReservation.Models;
 
 namespace OnlineCoursesReservation.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class UsersController : Controller
     {
-        // GET: UsersController
-        public ActionResult Index()
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly RoleManager<ApplicationUser> roleManager;
+
+        public UsersController(UserManager<ApplicationUser> userManager)
         {
-            return View();
+            this.userManager = userManager;
+        }
+
+        // GET: UsersController
+        public async Task<ActionResult> Index()
+        {
+            var users = await userManager.Users.Select(user => new UserViewModel
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName = user.UserName,
+                Email = user.Email,
+                Roles = userManager.GetRolesAsync(user).Result.ToList()
+            }).ToListAsync();
+
+            return View(users);
         }
 
         // GET: UsersController/Details/5

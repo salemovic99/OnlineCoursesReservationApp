@@ -1,11 +1,87 @@
-﻿@{
-    var action = Context.GetRouteValue("Action");
-    var controller = Context.GetRouteValue("Controller");
+﻿@model IEnumerable<IdentityRole>
+@{
     ViewData["Title"] = "Roles";
 }
 
 
-<br />
-action = @action
-<br />
-con = @controller
+<div class="">
+    <h3>الأدوار (@Model.Count())</h3>
+    <p>إدارة الأدوار</p>
+</div>
+    
+
+<partial name="_RoleCreatePartial" model="@new RoleFormViewModel()"></partial>
+<div id="alert" class="d-none alert alert-success alert-dismissible fade show" role="alert">
+    تم حذف العنصر بنجاح!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<table class="table table-borderless">
+    <thead class="">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="roleRow_@item.Id">
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>
+                    <button class="delete-button btn btn-dark" data-id="@item.Id"><i class="ri-delete-bin-6-line"></i></button>
+                    <button class="  btn btn-dark" data-user-id="@item.Id" title="تعديل"><i class="ri-edit-line"></i></button>
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    
+    <script>
+        $(document).ready(function () {
+            $('.delete-button').on('click', function () {
+                var id = $(this).data('id');
+                var btn = $(this);
+                bootbox.confirm({
+                    message: 'هل أنت متأكد أنك تريد حذف هذا العنصر؟',
+                    buttons: {
+                        confirm: {
+                            label: 'نعم',
+                            className: 'btn-dark'
+                        },
+                        cancel: {
+                            label: 'الغاء',
+                            className: 'btn-outline-info'
+                        }
+                    },
+                    callback: function (result) {
+                        console.log('This was logged in the callback: ' + result);
+                        if (result) {
+                            $.ajax({
+                                url: `/Admin/Roles/delete?id=${id}`,
+                                method: "DELETE",
+                                success: function () {
+
+                                    btn.parents('tr').fadeOut();
+                                    $('#alert').removeClass('d-none');
+                                    setTimeout(() => { $('#alert').fadeOut(1000); }, 3000)
+                                },
+                                error: function () {
+                                    bootbox.alert('فشلت عملية الحذف. الرجاء المحاولة مرة أخرى.');
+                                }
+                            });
+                        }
+                    }
+                });
+
+            });
+        });
+    </script>
+}

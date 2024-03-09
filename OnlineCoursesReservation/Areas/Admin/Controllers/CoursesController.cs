@@ -1,14 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineCoursesReservation_DataAccess.Services.Repositories;
 
 namespace OnlineCoursesReservation.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class CoursesController : Controller
     {
-        // GET: CoursesController
-        public ActionResult Index()
+        private readonly IUnitOfWork unitOfWork;
+
+        public CoursesController(IUnitOfWork unitOfWork)
         {
-            return View();
+            this.unitOfWork = unitOfWork;
+        }
+
+        // GET: CoursesController
+        public async Task<ActionResult> Index()
+        {
+            return View(await unitOfWork.CourseRepository.GetAllAsync());
         }
 
         // GET: CoursesController/Details/5
@@ -18,8 +26,14 @@ namespace OnlineCoursesReservation.Areas.Admin.Controllers
         }
 
         // GET: CoursesController/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            //var model = new CourseFormViewModel()
+            //{
+            //    Categories = unitOfWork.CategoryRepository.GetAllAsync().Result,
+            //    Levels = unitOfWork.LevelRepository.GetAllAsync().Result,
+            //    Teachers = unitOfWork.TeacherRepository.GetAllAsync().Result
+            //};
             return View();
         }
 

@@ -1,40 +1,53 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using OnlineCoursesReservation.Areas.Admin.ViewModels;
 
 namespace OnlineCoursesReservation.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class RolesController : Controller
     {
+        private readonly RoleManager<IdentityRole> roleManager;
+
+        public RolesController(RoleManager<IdentityRole> roleManager)
+        {
+            this.roleManager = roleManager;
+        }
+
         // GET: RolesController
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            return View(await roleManager.Roles.ToListAsync());
         }
 
-        // GET: RolesController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
-        // GET: RolesController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
 
         // POST: RolesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(RoleFormViewModel model)
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return View("Index", await roleManager.Roles.ToListAsync());
+                }
+
+                if (roleManager.RoleExistsAsync(model.Name).Result)
+                {
+                    ModelState.AddModelError("Name", "الدور موجود!");
+                    return View("Index", await roleManager.Roles.ToListAsync());
+                }
+
+                await roleManager.CreateAsync(new IdentityRole(model.Name.Trim()));
+
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return Problem();
             }
         }
 
@@ -59,24 +72,32 @@ namespace OnlineCoursesReservation.Areas.Admin.Controllers
             }
         }
 
-        // GET: RolesController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+
 
         // POST: RolesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        [HttpDelete]
+        public async Task<ActionResult> Delete(string id)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (id == null)
+                {
+                    return BadRequest();
+                }
+
+                var role = await roleManager.FindByIdAsync(id);
+                if (role == null)
+                {
+                    return NotFound();
+                }
+
+                await roleManager.DeleteAsync(role);
+
+                return Ok();
             }
             catch
             {
-                return View();
+                return BadRequest();
             }
         }
     }

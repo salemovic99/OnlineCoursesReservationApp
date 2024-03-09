@@ -1,11 +1,59 @@
-﻿@{
-    var action = Context.GetRouteValue("Action");
-    var controller = Context.GetRouteValue("Controller");
+﻿@model IEnumerable<Payment>
+@{
+ 
     ViewData["Title"] = "الحجوزات";
 }
 
 
-<br />
-action = @action
-<br />
-con = @controller
+
+<div class="">
+    <div class="">
+        <h3>الحجوزات (@Model.Count())</h3>
+        <p>إدارة الحجوزات</p>
+    </div>
+   
+</div>
+
+
+
+<div >
+    
+        @if (Model.Count() < 1)
+        {
+
+            <div class="text-center alert alert-info ">لا يوجد حجوزات حاليا!</div>
+
+        }
+
+        else
+        {
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th> اسم الدورة</th>
+                            <th> السعر</th>
+                            <th>  عدد المقاعد</th>
+                            <th>  عدد السمجلين</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.PaymentId</td>
+                                <td>@item.Amount</td>
+                                <td>@item.PaymentDate</td>
+                                
+                                <td>
+                                    <button class="delete-button btn btn-dark" data-course-id="@item.PaymentId"><i class="ri-delete-bin-6-line"></i></button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+        }
+
+
+</div>

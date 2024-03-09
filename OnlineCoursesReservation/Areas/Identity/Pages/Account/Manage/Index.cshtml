@@ -30,7 +30,7 @@
                             <img id="img-container" src="~/imgs/userprofile.png" alt="Profile_img" width="90px" height="90px" class="rounded-circle" />
                         }
                     </div>
-                    <div id="icon-btn"><i class="ri-edit-line fs-4" title="تعديل "></i></div>
+                    <div id="icon-btn" style="cursor:pointer;width:10px;"><i class="ri-edit-line fs-4" title=" تعديل الصورة "></i></div>
                     <label asp-for="Input.ProfilePicture" class="form-label"></label>
                     <input type="file" id="file-input" accept="image/*" asp-for="Input.ProfilePicture" class="form-control" onchange="document.querySelector('#img-container').src = window.URL.createObjectURL(this.files[0])" />
                     <span asp-validation-for="Input.ProfilePicture" class="text-danger"></span>

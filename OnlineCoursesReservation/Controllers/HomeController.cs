@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnlineCoursesReservation.Models;
+using OnlineCoursesReservation.ViewModels;
+using OnlineCoursesReservation_DataAccess.Services.Repositories;
 using System.Diagnostics;
 
 namespace OnlineCoursesReservation.Controllers
@@ -8,18 +10,24 @@ namespace OnlineCoursesReservation.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IUnitOfWork unitOfWork;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
+            this.unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var faqtopcourses = new FaqTopCoursesViewModel()
+            {
+                FAQs = await unitOfWork.FaqRepositoy.GetAllAsync()
+            };
+            return View(faqtopcourses);
         }
 
-        public IActionResult Courses()
+        public async Task<IActionResult> Courses()
         {
             return View();
         }
@@ -28,8 +36,6 @@ namespace OnlineCoursesReservation.Controllers
         {
             return View();
         }
-
-
 
         public IActionResult Details()
         {

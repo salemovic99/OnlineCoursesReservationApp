@@ -1,0 +1,36 @@
+﻿@model FAQ
+
+@{
+    ViewData["Title"] = "تعديل";
+}
+
+<h3>تعديل السوال </h3>
+
+<form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Question" class="form-label"></label>
+        <input type="text" asp-for="Question" class="form-control" />
+        <span asp-validation-for="Question" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Answer" class="form-label"></label>
+        <textarea asp-for="Answer" class="form-control" rows="10" cols="8" style="resize:none;">
+            </textarea>
+        <span asp-validation-for="Answer" class="text-danger"></span>
+    </div>
+
+
+    <div class="">
+        <a asp-action="Index" class="btn btn-outline-info" >الغاء</a>
+        <button type="submit" class="btn btn-dark">تعديل</button>
+    </div>
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,11 +1,60 @@
-﻿@{
-    var action = Context.GetRouteValue("Action");
-    var controller = Context.GetRouteValue("Controller");
+﻿@model IEnumerable<Course>
+
+@{
     ViewData["Title"] = "الكورسات";
 }
 
+<div class="row d-flex justify-content-between align-items-center">
+    <div class="col-xl-2">
+        <h3>الدورات (@Model.Count())</h3>
+        <p>إدارة دوراتك</p>
+    </div>
+    <div class="col-xl-2">
+        <a asp-action="Create" class="btn btn-dark"><i class="ri ri-add-line"></i> إضافة جديد</a>
+    </div>
+</div>
 
-<br />
-action = @action
-<br />
-con = @controller
+
+
+<div
+
+        @if(Model.Count() < 1)
+        {
+               
+            <div class="text-center alert alert-info ">لا يوجد دورات حاليا!</div>
+                
+        }
+
+        else
+        {
+            <table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th> اسم الدورة</th>
+                        <th> السعر</th>
+                        <th>  عدد المقاعد</th>
+                        <th>  عدد السمجلين</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.CourseId</td>
+                                <td>@item.Title</td>
+                                <td>@item.Price</td>
+                                <td>@item.NumberOfSeats</td>
+                                <td>@item.EnrollmentCount</td>
+                                <td>
+                                    <button class="delete-button btn btn-dark" data-course-id="@item.CourseId"><i class="ri-delete-bin-6-line"></i></button>
+                                </td>
+                            </tr>
+                        }
+                </tbody>
+            </table>
+        }
+
+
+</div>

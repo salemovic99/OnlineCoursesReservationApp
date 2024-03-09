@@ -1,0 +1,40 @@
+﻿@model FAQ
+
+
+
+<div class="modal fade" id="AddFAqModal" tabindex="-1" aria-labelledby="AddFAQModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="AddFAQModalLabel">اضافة FAQ</h1>
+                
+            </div>
+            <div class="modal-body">
+                <form asp-action="Create" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Question" class="form-label"></label>
+                        <input type="text" asp-for="Question" class="form-control" />
+                        <span asp-validation-for="Question" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Answer" class="form-label"></label>
+                        
+                        <textarea asp-for="Answer" class="form-control" rows="12" cols="8" style="resize:none;">
+
+                        </textarea>
+                        <span asp-validation-for="Answer" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">الغاء</button>
+                        <button type="submit" class="btn btn-dark">اضافة</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

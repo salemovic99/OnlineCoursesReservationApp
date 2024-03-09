@@ -1,4 +1,5 @@
 ﻿using OnlineCoursesReservation.Models;
+using OnlineCoursesReservation_DataAccess.Models;
 
 namespace OnlineCoursesReservation_DataAccess.Services.Repositories
 {
@@ -13,6 +14,7 @@ namespace OnlineCoursesReservation_DataAccess.Services.Repositories
         BaseRepositoy<PaymentStatus> PaymentStatusRepository { get; }
         BaseRepositoy<Gender> GenderRepository { get; }
         BaseRepositoy<UserCourse> UserCourseRepository { get; }
+        BaseRepositoy<FAQ> FaqRepositoy { get; }
 
         Task ComplateAsync();
     }

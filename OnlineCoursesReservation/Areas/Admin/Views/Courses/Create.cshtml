@@ -1,0 +1,212 @@
+﻿@model CourseFormViewModel
+
+@{
+    ViewData["Title"] = "أضافة دورة جديدة";
+}
+
+<div class="container">
+    <a asp-action="Index" class="text-decoration-none text-dark">الدورات</a>
+    <i class="ri-arrow-left-double-fill"></i>
+    <a asp-action="Courses" class="text-decoration-none text-dark fw-bold">اضافة دورة جديدة</a>
+    
+
+</div>
+
+<h2 class="text-center">أضافة دورة جديدة</h2>
+<section class="p-5">
+    <div class="container ">
+        <div class="row d-flex justify-content-center align-items-center ">
+            <form action="" class="shadow-sm p-5 rounded-2 col-xl-8">
+
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label"></label>
+                    <input type="text" asp-for="Title" class="form-control">
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label"></label>
+                    <textarea id="text-area" asp-for="Description" style="display:none;"  >
+
+                    </textarea> 
+                    <div id="editor" class="quill-editor-full">
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
+                    <div class="col-xl-3">
+                        <label asp-for="Duration" class="form-label"></label>
+                        <input type="number" asp-for="Duration" class="form-control" min="0">
+                        <span asp-validation-for="Duration" class="text-danger"></span>
+
+                    </div>
+                    <div class="col-xl-3">
+                        <label asp-for="Price" class="form-label"></label>
+                        <input type="number" asp-for="Price" class="form-control" min="0">
+                        <span asp-validation-for="Duration" class="text-danger"></span>
+
+                    </div>
+                    <div class="col-xl-3">
+                        <label asp-for="Discount" class="form-label"></label>
+                        <input type="number" asp-for="Discount" class="form-control" min="0" max="1">
+                        <span asp-validation-for="Discount" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="col-xl-3">
+                        <label asp-for="NumberOfSeats" class="form-label"></label>
+                        <input type="number" asp-for="NumberOfSeats" class="form-control" min="0" max="30">
+                        <span asp-validation-for="NumberOfSeats" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-xl-6">
+                        <label asp-for="StartDate" class="form-label"></label>
+                        <input type="date" asp-for="StartDate" class="form-control" min="2024-01-01">
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+
+                    </div>
+                    <div class="col-xl-6">
+                        <label asp-for="EndDate" class="form-label"></label>
+                        <input type="date" asp-for="EndDate" class="form-control" min="2024-01-01" max="2030-12-31">
+                        <span asp-validation-for="EndDate" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="CategoryId" class="form-label"></label>
+                    <select asp-for=CategoryId  class="form-select">
+
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="LevelId" class="form-label"></label>
+                    <select asp-for=LevelId class="form-select">
+                    </select>
+                    <span asp-validation-for="LevelId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="TeacherId" class="form-label"></label>
+                    <select asp-for="TeacherId" class="form-select">
+                    </select>
+                    <span asp-validation-for="TeacherId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Thumnail" class="form-label"></label>
+                    <input type="file" asp-for="Thumnail" id="imageInput" accept="image/*" class="form-control">
+                    <span asp-validation-for="Thumnail" class="text-danger"></span>
+
+                    <div id="imageContainer">
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    <label asp-for="IsHasCertificate" class="form-check-label mb-2"></label>
+
+                    <div class="d-flex gap-3">
+                        
+                            <label for="yes">نعم</label>
+                            <input type="radio" id="yes" name="IsHasCertificate" value="True" class="form-check" asp-for="IsHasCertificate">
+
+                        
+                        
+
+                        <label for="no">لا</label>
+                        <input type="radio" id="no" name="IsHasCertificate" value="False" class="form-check" asp-for="IsHasCertificate">
+                        
+                    </div>
+
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-dark w-100 ">حفظ</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+
+    <script>
+
+        const imageInput = document.getElementById('imageInput');
+
+
+        imageInput.addEventListener('change', function (event) {
+            // Get the selected file
+            const file = event.target.files[0];
+
+
+            if (file) {
+                // Create a new image element
+                const image = document.createElement('img');
+
+                // Set the URL of the image element using createObjectURL
+                image.src = URL.createObjectURL(file);
+
+                
+                image.width = 400;
+
+                // Append the image element to a container in the HTML
+                const imageContainer = document.querySelector('#imageContainer');
+                imageContainer.innerHTML = ''; // Clear previous image (if any)
+                imageContainer.appendChild(image);
+            }
+        });
+
+        const toolbarOptions = [
+            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            ['blockquote', 'code-block'],
+            ['link', 'image', 'video', 'formula'],
+
+            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
+            [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+            [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+            [{ 'direction': 'rtl' }],                         // text direction
+
+            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+
+            ['clean']                                         // remove formatting button
+        ];
+        const options = {
+            debug: 'info',
+            direction: 'rtl',
+            modules: {
+                toolbar: true,
+                toolbar: toolbarOptions
+            },
+            
+            theme: 'snow',
+            
+
+
+        };
+        const quill = new Quill('#editor', options);
+        quill.format('direction', 'rtl');
+        quill.format('align', 'right');
+
+        document.querySelector('form').onsubmit = function () {
+            document.querySelector('#text-area').value = quill.root.innerHTML;
+           
+        };
+
+        
+    </script>
+
+}

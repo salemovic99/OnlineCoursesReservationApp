@@ -1,0 +1,15 @@
+﻿@model RoleFormViewModel
+
+
+<form asp-area="Admin" asp-controller="Roles" asp-action="Create" method="post">
+
+    <div class="input-group mb-3">
+       
+        <input type="text" asp-for="Name" class="form-control" placeholder="اسم الدور ...." />
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-dark">اضافة</button>
+        </div>
+    </div>
+    <span asp-validation-for="Name" class="text-danger"></span>
+
+</form>

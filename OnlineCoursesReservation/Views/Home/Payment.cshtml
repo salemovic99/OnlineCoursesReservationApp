@@ -8,7 +8,7 @@
     <i class="ri-arrow-left-double-fill"></i>
     <a asp-action="Courses" class="text-decoration-none text-dark">الكورسات</a>
     <i class="ri-arrow-left-double-fill"></i>
-    <a asp-action="Detals" asp-controller="Home" class="text-decoration-none text-dark">تفاصيل</a>
+    <a asp-action="Details" class="text-decoration-none text-dark">تفاصيل</a>
     <i class="ri-arrow-left-double-fill"></i>
     <a asp-action="Payment" class="text-decoration-none text-dark">الدفع</a>
 
@@ -31,11 +31,12 @@
                                 <option value="">بن دول</option>
                             </select>
                         </div>
-                        <h5 class="mb-3">حساب رقم : 12254524 </h5>
+                        <h5 id="account-number" style="visibility:hidden;" class="mb-3">حساب رقم : 12254524 </h5>
 
                         <div class="mb-3">
-                            <label for="bill" class="form-label">اضافة صورة  السند</label>
-                            <input type="file" name="bill" id="bill" class="form-control" accept=".png , .jpeg, .jpg" required>
+                            <label for="img-input" class="form-label">اضافة صورة  السند</label>
+                            <input id="img-input" type="file" name="bill"  class="form-control" accept=".png , .jpeg, .jpg" required style="display:none">
+                            <div id="btn-upload-img" title="تحميل الصورة" style="cursor:pointer;"><i class="ri-upload-cloud-line fs-3"></i></div>
                         </div>
 
                         <div class="mb-4">
@@ -70,6 +71,14 @@
             img_container.src = imageUrl;
             img_container.style.display = 'block';
 
+        });
+
+        document.querySelector('#btn-upload-img').addEventListener('click', ()=>{
+            document.querySelector('#img-input').click();
+        })
+
+        document.querySelector('#payment-method').addEventListener('change', () => {
+            document.querySelector('#account-number').style.visibility = "visible";
         })
     </script>
 

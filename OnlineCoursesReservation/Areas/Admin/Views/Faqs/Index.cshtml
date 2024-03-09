@@ -1,0 +1,109 @@
+﻿
+@model IEnumerable<FAQ>
+@{
+    
+    ViewData["Title"] = "FAQs";
+}
+
+
+
+<div class="row d-flex justify-content-between align-items-center">
+    <div class="col-xl-2">
+        <h3>FAQs (@Model.Count())</h3>
+        <p>إدارة FAQs</p>
+    </div>
+    <div class="col-xl-2">
+        
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#AddFAqModal">
+            <i class="ri ri-add-line"></i>  إضافة جديد
+        </button>
+    </div>
+</div>
+
+
+@await Html.PartialAsync("FaqCreatePartial", new FAQ());
+
+<div id="alert" class="d-none alert alert-success alert-dismissible fade show" role="alert">
+    تم حذف العصنر بنجاح!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div>
+    <table class="table table-borderless ">
+        <thead>
+            <tr>
+               <th>Id</th>
+               <th>السوال</th>
+               <th>الجواب</th>
+               <th>...</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Question</td>
+                    <td>@item.Answer</td>
+                    <td class="d-flex gap-1">
+                        <button class="delete-btn btn btn-dark" title="حذف" data-faqid="@item.Id"><i class="ri-delete-bin-6-line"></i></button>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-dark"  title="تعديل"><i class="ri-edit-line"></i></a>                      
+                    </td>
+                </tr>
+            }
+            
+        </tbody>
+    </table>
+
+</div>
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/lib/bootbox.js/bootbox.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.delete-btn').on('click', function () {
+                var faqId = $(this).data('faqid');
+                var btn = $(this);
+                bootbox.confirm({
+                    message: 'هل أنت متأكد أنك تريد حذف هذا العنصر؟',
+                    buttons: {
+                        confirm: {
+                            label: 'نعم',
+                            className: 'btn-dark'
+                        },
+                        cancel: {
+                            label: 'الغاء',
+                            className: 'btn-outline-info'
+                        }
+                    },
+                    callback: function (result) {
+                        console.log('This was logged in the callback: ' + result);
+                        if(result)
+                        {
+                            $.ajax({
+                                url: `/Admin/Faqs/delete?id=${faqId}`,
+                                method: "DELETE",                          
+                                success: function () {
+                                    
+                                    btn.parents('tr').fadeOut();
+                                    $('#alert').removeClass('d-none');
+                                    setTimeout(() => { $('#alert').fadeOut(1000); }, 3000)
+                                },
+                                error: function () {
+                                    bootbox.alert('فشلت عملية الحذف. الرجاء المحاولة مرة أخرى.');
+                                }
+                            });
+                        }
+                    }
+                });
+               
+            });
+        });
+    </script>
+}
+
+

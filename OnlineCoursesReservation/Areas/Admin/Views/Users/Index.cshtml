@@ -1,12 +1,49 @@
-﻿
+﻿@model IEnumerable<UserViewModel>
 @{
-    var action = Context.GetRouteValue("Action");
-    var controller = Context.GetRouteValue("Controller");
     ViewData["Title"] = "المستخدمين";
 }
 
 
-<br />
-action = @action
-<br />
-con = @controller
+<div class="row d-flex justify-content-between align-items-center">
+    <div class="col-xl-2">
+        <h3>المستخدمين (@Model.Count())</h3>
+        <p>إدارة المستخدمين</p>
+    </div>
+    <div class="col-xl-2">
+        <a href="#" class="btn btn-dark"><i class="ri ri-add-line"></i> إضافة جديد</a>
+    </div>
+</div>
+
+<div>
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                
+                <th>الاسم الاول</th>
+                <th>الاسم الثاني</th>
+                <th> اسم المستخدم</th>
+                <th> البريد الالكترزني</th>
+                <th> Roles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.UserName</td>
+                    <td>@item.Email</td>
+                    <td>@string.Join(" - ", item.Roles)</td>
+                    <td>
+                        <button class="delete-button btn btn-dark" data-user-id="@item.Id" title="حذف"><i class="ri-delete-bin-6-line"></i></button>
+                        <button class="  btn btn-dark" data-user-id="@item.Id" title="تعديل"><i class="ri-edit-line"></i></button>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>

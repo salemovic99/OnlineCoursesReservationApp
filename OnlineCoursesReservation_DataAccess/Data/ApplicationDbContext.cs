@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OnlineCoursesReservation.Models;
+using OnlineCoursesReservation_DataAccess.Models;
 
 namespace OnlineCoursesReservation.Data
 {
@@ -21,6 +22,7 @@ namespace OnlineCoursesReservation.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Level> Levels { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<FAQ> FAQs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

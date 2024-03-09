@@ -66,12 +66,14 @@ namespace OnlineCoursesReservation.Areas.Identity.Pages.Account
         public class InputModel
         {
 
+            [RegularExpression(@"^[A-Za-z\u0600-\u06FF\s]+$", ErrorMessage = "يُسمح فقط بالأحرف الإنجليزية والعربية والمسافات.")]
             [Required(ErrorMessage = "الاسم مطلوب")]
             [StringLength(100)]
             [Display(Name = "الاسم الاول")]
             public string FirstName { get; set; }
 
 
+            [RegularExpression(@"^[A-Za-z\u0600-\u06FF\s]+$", ErrorMessage = "يُسمح فقط بالأحرف الإنجليزية والعربية والمسافات.")]
             [Required(ErrorMessage = "الاسم مطلوب")]
             [StringLength(100)]
             [Display(Name = "لاسم الثاني")]

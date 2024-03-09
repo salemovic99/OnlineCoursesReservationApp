@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="~/lib/aos/aos.css">
     <link rel="stylesheet" href="~/lib/apexcharts/apexcharts.css">
     <link rel="stylesheet" href="~/OnlineCoursesReservation.styles.css" asp-append-version="true" />
-
+    <link href="~/lib/quill/quill.snow.css" rel="stylesheet" />
     <!-- Remix Icons -->
     <link rel="stylesheet" href="~/lib/remixicon/remixicon.css">
 
@@ -89,10 +89,15 @@
                         <a asp-action="Index" asp-controller="Teachers"     class="nav-link @(controller == "Teachers" && action=="Index" ? "active-link" : "" )">المدرسين</a>
                         <a asp-action="Index" asp-controller="Categories"   class="nav-link @(controller == "Categories" && action=="Index" ? "active-link" : "" )">الفئات</a>
                         <a asp-action="Index" asp-controller="Levels"       class="nav-link @(controller == "Levels" && action=="Index" ? "active-link" : "" )">المستويات</a>
+                        <a asp-action="Index" asp-controller="Faqs"         class="nav-link @(controller == "Faqs" && action=="Index" ? "active-link" : "" )">FAQs</a>
                         <a asp-action="Index" asp-controller="Roles"        class="nav-link @(controller == "Roles" && action=="Index" ? "active-link" : "" )">Roles</a>
+                     
+                     
+                        
+
                     </div> 
                     <div>
-                        <a href="signin.html" class=""><img src="~/imgs/userprofile.png" alt="user" width="50px" height="50px"></a>
+                        <partial name="_LoginPartial"></partial>
                     </div>
                 </div>
 
@@ -111,14 +116,13 @@
     </main>
 
 
-   
-
-
+    
     <script src="~/lib/aos/aos.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="~/lib/apexcharts/apexcharts.js"></script>
-    <script src="~"></script>
+    <script src="~/lib/apexcharts/apexcharts.js"></script>    
+    <script src="~/lib/quill/quill.min.js"></script>
+    <script src="~/lib/bootbox.js/bootbox.min.js"></script>
     <script src="~/js/main.js"></script>
     <script src="~/js/site.js"></script>
     @await RenderSectionAsync("Scripts", required: false)

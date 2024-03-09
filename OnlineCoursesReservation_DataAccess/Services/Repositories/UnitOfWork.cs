@@ -1,5 +1,6 @@
 ﻿using OnlineCoursesReservation.Data;
 using OnlineCoursesReservation.Models;
+using OnlineCoursesReservation_DataAccess.Models;
 
 namespace OnlineCoursesReservation_DataAccess.Services.Repositories
 {
@@ -24,6 +25,7 @@ namespace OnlineCoursesReservation_DataAccess.Services.Repositories
         public BaseRepositoy<Gender> GenderRepository { get; private set; }
 
         public BaseRepositoy<UserCourse> UserCourseRepository { get; private set; }
+        public BaseRepositoy<FAQ> FaqRepositoy { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -37,7 +39,9 @@ namespace OnlineCoursesReservation_DataAccess.Services.Repositories
             PaymentStatusRepository = new BaseRepositoy<PaymentStatus>(context);
             GenderRepository = new BaseRepositoy<Gender>(context);
             UserCourseRepository = new BaseRepositoy<UserCourse>(context);
+            FaqRepositoy = new BaseRepositoy<FAQ>(context);
         }
+
 
         public async Task ComplateAsync()
         {

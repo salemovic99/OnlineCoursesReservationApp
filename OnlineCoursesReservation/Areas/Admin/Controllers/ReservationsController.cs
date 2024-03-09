@@ -1,14 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using OnlineCoursesReservation.Models;
+using OnlineCoursesReservation_DataAccess.Services.Repositories;
 
 namespace OnlineCoursesReservation.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class ReservationsController : Controller
     {
-        // GET: ReservationsController
-        public ActionResult Index()
+        private readonly IUnitOfWork unitOfWork;
+        private readonly UserManager<ApplicationUser> userManager;
+
+        public ReservationsController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
         {
-            return View();
+            this.unitOfWork = unitOfWork;
+            this.userManager = userManager;
+        }
+
+        // GET: ReservationsController
+        public async Task<ActionResult> Index()
+        {
+            return View(await unitOfWork.PaymentRepository.GetAllAsync());
         }
 
         // GET: ReservationsController/Details/5
